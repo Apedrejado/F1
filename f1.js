@@ -1,30 +1,90 @@
-var jogador;
+class Jogador {
+  constructor() {
+    this.saldo = 0;
+    this.aposta = 0;
+  }
+}
+const jogador = new Jogador();
+
 let aposta;
-var ganhador;
+let winer;
 
 function increverJogador(){
-  const saldo = prompt('coloque saldo:');
-
-  const jogador = {
-    saldo: saldo    
-  }
-  var visor = document.getElementById("saldo").innerHTML = saldo;
+  jogador.saldo = parseInt(prompt('Insira o saldo do jogador:'));
+  var visor = document.getElementById("saldo");
+  visor.innerHTML = jogador.saldo;
 }
 
-function checkAposta(aposta){
-  if(aposta == ganhador){
-    atualizaSaldo(aposta);
+function checkAposta(){
+  if(aposta == winer){
+    jogador.saldo =  jogador.aposta * 5;  
+    var visor = document.getElementById("saldo");
+    visor.innerHTML = jogador.saldo;
   }
 }
 
-function ap(){
+
+function ap1(){
+  var valorAposta = prompt('Insira o valor da aposta:');  
+  if(jogador.saldo > valorAposta){
+    jogador.saldo -= valorAposta; 
+    jogador.aposta = valorAposta;
+    var visor = document.getElementById("saldo");
+    visor.innerHTML = jogador.saldo;     
+    aposta = 1;
+    init();
+  }
+  else{alert("nao tem grana")}
+}
+function ap2(){
   var valorAposta = prompt('Insira o valor da aposta:');
+  if(jogador.saldo > valorAposta){
+    jogador.saldo -= valorAposta;
+    jogador.aposta = valorAposta;
+    var visor = document.getElementById("saldo");
+    visor.innerHTML = jogador.saldo;
+    aposta = 2;
+    init();
+  }
+  else{alert("nao tem grana")}
+}
+function ap3(){
+  var valorAposta = prompt('Insira o valor da aposta:');
+  if(jogador.saldo > valorAposta){
+    jogador.saldo -= valorAposta;
+    jogador.aposta = valorAposta;
+    var visor = document.getElementById("saldo");
+    visor.innerHTML = jogador.saldo;
+    aposta = 3;
+    init();
+  }
+  else{alert("nao tem grana")}
+}
+function ap4(){
+  var valorAposta = prompt('Insira o valor da aposta:');
+  if(jogador.saldo > valorAposta){
+    jogador.saldo -= valorAposta;
+    jogador.aposta = valorAposta;
+    var visor = document.getElementById("saldo");
+    visor.innerHTML = jogador.saldo;
+    aposta = 4;
+    init();
+  }
+  else{alert("nao tem grana")}
+}
+function ap5(){
+  var valorAposta = prompt('Insira o valor da aposta:');
+  if(jogador.saldo > valorAposta){
+    jogador.saldo -= valorAposta
+    jogador.aposta = valorAposta;;
+    var visor = document.getElementById("saldo");
+    visor.innerHTML = jogador.saldo;
+    aposta = 5;
+    init();
+  }
+  else{alert("nao tem grana")}
 }
 
-
-function atualizaSaldo(aposta){
-  jogador.saldo += aposta * 5;
-}
 
 let myInterval1;
 let myInterval2;
@@ -39,7 +99,7 @@ let posX4 = 0;
 let posX5 = 0;
 
 function timer1(){
-  posX1 += Math.ceil(Math.random() * 50);
+  posX1 += Math.ceil(Math.random() * 150);
   const c1 = document.getElementById("car1");
   if(posX1 > 1150){
     posX1 = 1150;
@@ -50,7 +110,7 @@ function timer1(){
 }
 
 function timer2(){
-  posX2 += Math.ceil(Math.random() * 50);
+  posX2 += Math.ceil(Math.random() * 15);
   const c2 = document.getElementById("car2");
   if(posX2 > 1150){
     posX2 = 1150;
@@ -61,7 +121,7 @@ function timer2(){
 }
 
 function timer3(){
-  posX3 += Math.ceil(Math.random() * 50);
+  posX3 += Math.ceil(Math.random() * 15);
   const c3 = document.getElementById("car3");
   if(posX3 > 1150){
     posX3 = 1150;
@@ -72,7 +132,7 @@ function timer3(){
 }
 
 function timer4(){
-  posX4 += Math.ceil(Math.random() * 50);
+  posX4 += Math.ceil(Math.random() * 15);
   const c4 = document.getElementById("car4");
   if(posX4 > 1150){
     posX4 = 1150;
@@ -83,7 +143,7 @@ function timer4(){
 }
 
 function timer5(){
-  posX5 += Math.ceil(Math.random() * 50);
+  posX5 += Math.ceil(Math.random() * 15);
   const c5 = document.getElementById("car5");
   if(posX5 > 1150){
     posX5 = 1150;
@@ -104,30 +164,61 @@ function myStop() {
 function ganhador(){
   myStop();
   if(posX1 == 1150){
-    ganhador = 1;
-    alert("1")
+    winer = 1;
+    checkAposta();
+    resetarPosicao();
+    alert("1 ganhou")
   }
   if(posX2 == 1150){
-    ganhador = 2;
-    alert("2")
+    winer = 2;
+    checkAposta();
+    resetarPosicao();
+    alert("2 ganhou")
   }
   if(posX3 == 1150){
-    ganhador = 3;
-    alert("3")
+    winer = 3;
+    checkAposta();
+    resetarPosicao();
+    alert("3 ganhou")
   }
   if(posX4 == 1150){
-    ganhador = 4;
-    alert("4")
+    winer = 4;
+    checkAposta();
+    resetarPosicao();
+    alert("4 ganhou")
   }
   if(posX5 == 1150){
-    ganhador = 5;
-    alert("5")
-  }
-  
+    winer = 5;
+    checkAposta();
+    resetarPosicao();
+    alert("5 ganhou")
+  }  
 }
 
+function resetarPosicao() {
+  posX1 = 0; 
+  const c1 = document.getElementById("car1");
+  c1.style.transform = "translateX(" + posX1 + "px )";
+
+  posX2 = 0; 
+  const c2 = document.getElementById("car2");
+  c2.style.transform = "translateX(" + posX2 + "px )"; 
+
+  posX3 = 0; 
+  const c3 = document.getElementById("car3");
+  c3.style.transform = "translateX(" + posX3 + "px )"; 
+
+  posX4 = 0;
+  const c4 = document.getElementById("car4");
+  c4.style.transform = "translateX(" + posX4 + "px )"; 
+
+  posX5 = 0;
+  const c5 = document.getElementById("car5");
+  c5.style.transform = "translateX(" + posX5 + "px )"; 
+}
+
+
 function init() {
-  //alert("faca sua aposta !")
 
   if(comecar = true){
     myInterval1 = setInterval(timer1, 50);
