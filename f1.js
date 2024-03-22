@@ -99,7 +99,7 @@ let posX4 = 0;
 let posX5 = 0;
 
 function timer1(){
-  posX1 += Math.ceil(Math.random() * 150);
+  posX1 += Math.ceil(Math.random() * 15);
   const c1 = document.getElementById("car1");
   if(posX1 > 1150){
     posX1 = 1150;
